@@ -170,17 +170,17 @@ Create a basic UI to interact with your bridge:
 Your submission should include:
 
 1. **Smart Contracts**
-   - [ ] `BridgeableToken.sol` - Your cross-chain token implementation
-   - [ ] `TokenBridge.sol` - Bridge logic contract
-   - [ ] Deployment scripts
+   - [x] `BridgeableToken.sol` - Your cross-chain token implementation
+   - [x] `TokenBridge.sol` - Bridge logic contract
+   - [x] Deployment scripts
 
 2. **Documentation**
-   - [ ] README explaining your implementation
-   - [ ] Deployment addresses
+   - [x] README explaining your implementation
+   - [x] Deployment addresses
 
 3. **Testing**
-   - [ ] Unit tests for all contracts
-   - [ ] Integration tests for cross-chain scenarios
+   - [x] Unit tests for all contracts
+   - [x] Integration tests for cross-chain scenarios
 
 4. **Frontend**
    - [ ] Basic UI for bridging tokens
