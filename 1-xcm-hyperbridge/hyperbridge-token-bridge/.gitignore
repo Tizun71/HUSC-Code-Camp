@@ -15,4 +15,3 @@ docs/
 .env
 
 node_modules
-lib/*
