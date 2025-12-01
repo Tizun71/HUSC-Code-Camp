@@ -55,53 +55,20 @@ forge init
 2. **Install Hyperbridge SDK**
 
 ```bash
-npm install @hyperbridge/core
-# or
+forge install OpenZeppelin/openzeppelin-contracts
 forge install polytope-labs/hyperbridge-sdk
 ```
 
 3. **Configure remappings** (add to `remappings.txt`)
 
 ```
-@hyperbridge/core/=node_modules/@hyperbridge/core/
-@openzeppelin/contracts/=node_modules/@openzeppelin/contracts/
+@hyperbridge/core/=lib/hyperbridge-sdk/packages/core/contracts/
+@openzeppelin/contracts/=lib/openzeppelin-contracts/contracts/
 ```
 
 ## 📝 Challenge Tasks
 
-### Task 1: Create a Bridgeable Token
-
-Create an ERC20 token that extends `HyperFungibleToken` for cross-chain bridging:
-
-```solidity
-// SPDX-License-Identifier: MIT
-pragma solidity ^0.8.17;
-
-import {HyperFungibleToken} from "@hyperbridge/core/contracts/apps/HyperFungibleToken.sol";
-
-contract BridgeableToken is HyperFungibleToken {
-    address private immutable _gateway;
-
-    constructor(
-        string memory name,
-        string memory symbol,
-        address gatewayAddress
-    ) HyperFungibleToken(name, symbol) {
-        _gateway = gatewayAddress;
-    }
-
-    function gateway() public view override returns (address) {
-        return _gateway;
-    }
-}
-```
-
-**Key Points:**
-- Only the gateway can mint/burn tokens (enforced by `onlyGateway` modifier)
-- The gateway address should be immutable for security
-- Extends OpenZeppelin's ERC20 implementation
-
-### Task 2: Implement Cross-Chain Transfer Logic
+### Task 1: Implement Cross-Chain Transfer Logic
 
 Create a contract that interacts with the TokenGateway for bridging:
 
@@ -109,11 +76,13 @@ Create a contract that interacts with the TokenGateway for bridging:
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.17;
 
-import {ITokenGateway} from "@hyperbridge/core/contracts/apps/TokenGateway.sol";
-import {StateMachine} from "@hyperbridge/core/contracts/libraries/StateMachine.sol";
+import {ITokenGateway, TeleportParams} from "@hyperbridge/core/apps/TokenGateway.sol";
+import {StateMachine} from "@hyperbridge/core/libraries/StateMachine.sol";
+import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
 contract TokenBridge {
     ITokenGateway public immutable tokenGateway;
+    address public immutable feeToken;
     
     constructor(address _tokenGateway) {
         tokenGateway = ITokenGateway(_tokenGateway);
@@ -121,11 +90,13 @@ contract TokenBridge {
     
     /// @notice Bridge tokens to another chain
     /// @param token The token address to bridge
+    /// @param symbol The token symbol to bridge
     /// @param amount The amount to bridge
     /// @param recipient The recipient address on the destination chain
     /// @param destChain The destination chain identifier
     function bridgeTokens(
         address token,
+        string memory symbol,
         uint256 amount,
         address recipient,
         bytes memory destChain
@@ -133,6 +104,7 @@ contract TokenBridge {
         // Approve the gateway to spend tokens
         IERC20(token).transferFrom(msg.sender, address(this), amount);
         IERC20(token).approve(address(tokenGateway), amount);
+        IERC20(feeToken).approve(address(tokenGateway), type(uint256).max);
         
         // Initiate the cross-chain transfer
         // Implementation depends on TokenGateway interface
@@ -140,7 +112,7 @@ contract TokenBridge {
 }
 ```
 
-### Task 3: Build a Simple Frontend
+### Task 2: Build a Simple Frontend
 
 Create a basic UI to interact with your bridge:
 - Connect wallet (MetaMask, etc.)
@@ -153,15 +125,13 @@ Create a basic UI to interact with your bridge:
 
 | Source Network     | Destination Network |
 | ------------------ | ------------------- |
-| Paseo              | Base Sepolia        |
-| Hydration Paseo    | Base Sepolia        |
-| Bifrost Paseo      | Base Sepolia        |
-| BSC Testnet        | Base Sepolia        |
+| Paseo              | ETH Sepolia         |
+| BSC Testnet        | ETH Sepolia         |
+| Optimism Sepolia   | ETH Sepolia         |
 
-### Task 4: Deploy and Test
-
+### Task 3: Deploy and Test
+- Write unit tests
 - Deploy your contracts to testnets
-- Test cross-chain transfers between supported networks
 - Document deployment addresses and test results
 
 
@@ -170,17 +140,16 @@ Create a basic UI to interact with your bridge:
 Your submission should include:
 
 1. **Smart Contracts**
-   - [x] `BridgeableToken.sol` - Your cross-chain token implementation
-   - [x] `TokenBridge.sol` - Bridge logic contract
-   - [x] Deployment scripts
+   - [ ] `TokenBridge.sol` - Bridge logic contract
+   - [ ] Deployment scripts
+   - [ ] Bridge token script
 
 2. **Documentation**
-   - [x] README explaining your implementation
-   - [x] Deployment addresses
+   - [ ] README explaining your implementation
+   - [ ] Deployment addresses
 
 3. **Testing**
-   - [x] Unit tests for all contracts
-   - [x] Integration tests for cross-chain scenarios
+   - [ ] Unit tests for `TokenBridge.sol` contract
 
 4. **Frontend**
    - [ ] Basic UI for bridging tokens
