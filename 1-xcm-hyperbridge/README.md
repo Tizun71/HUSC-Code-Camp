@@ -6,7 +6,6 @@ Build a cross-chain token bridge using **Hyperbridge SDK** that enables ERC20 to
 
 In this challenge, you will:
 - Learn how Hyperbridge enables secure cross-chain communication
-- Create a bridgeable ERC20 token using `HyperFungibleToken`
 - Interact with the `TokenGateway` for cross-chain transfers
 - Deploy and test your bridge on Polkadot testnets
 
@@ -84,8 +83,9 @@ contract TokenBridge {
     ITokenGateway public immutable tokenGateway;
     address public immutable feeToken;
     
-    constructor(address _tokenGateway) {
+    constructor(address _tokenGateway, address _feeToken) {
         tokenGateway = ITokenGateway(_tokenGateway);
+        feeToken = _feeToken;
     }
     
     /// @notice Bridge tokens to another chain
