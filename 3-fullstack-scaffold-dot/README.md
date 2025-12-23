@@ -65,8 +65,8 @@ yarn start
 
 ## Requirements 
 
-- [ ] **Add ERC20 example**
-- [ ] **Add ERC721 examples**
+- [x] **Add ERC20 example**
+- [x] **Add ERC721 examples**
 
 
 ### Example UI
