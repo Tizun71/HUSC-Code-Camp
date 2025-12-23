@@ -1,1 +1,74 @@
 @import "tailwindcss";
+
+:root {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  
+  /* Polkadot Theme Colors */
+  --color-primary: #E6007A;
+  --color-primary-foreground: #FFFFFF;
+
+  --color-secondary: #27272A;
+  --color-secondary-foreground: #FFFFFF;
+
+  --color-muted: #27272A;
+  --color-muted-foreground: #A1A1AA;
+
+  --color-accent: #27272A;
+  --color-accent-foreground: #FFFFFF;
+
+  --color-card: #18181B;
+  --color-card-foreground: #FFFFFF;
+
+  --color-border: #3F3F46;
+
+  /* Extended Theme Colors */
+  --color-success: #16A34A;
+  --color-success-foreground: #FFFFFF;
+
+  --color-warning: #FACC15;
+  --color-warning-foreground: #000000;
+
+  --color-error: #DC2626;
+  --color-error-foreground: #FFFFFF;
+
+  --color-info: #3B82F6;
+  --color-info-foreground: #FFFFFF;
+
+  /* Extra Neutral Scale */
+  --color-neutral-50: #fafafa;
+  --color-neutral-100: #f4f4f5;
+  --color-neutral-200: #e4e4e7;
+  --color-neutral-300: #d4d4d8;
+  --color-neutral-400: #a1a1aa;
+  --color-neutral-500: #71717a;
+  --color-neutral-600: #52525b;
+  --color-neutral-700: #3f3f46;
+  --color-neutral-800: #27272a;
+  --color-neutral-900: #18181b;
+  --color-neutral-950: #09090b;
+}
+
+body {
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #18181b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
