@@ -1,36 +1,75 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+![DOT UI Kit](/public/frontend-kit-challenge.webp)
 
-## Getting Started
+# DOT UI Kit
 
-First, run the development server:
+An open-source, up-to-date, opinionated UI scaffolding kit for the Polkadot ecosystem (starting with Asset Hub). The technical stack is:
+- [Next.js](https://nextjs.org/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [Lucide icons](https://lucide.dev/)
+- [ShadCN UI](https://ui.shadcn.com/)
+- [RainbowKit](https://www.rainbowkit.com/)
+- [Wagmi](https://wagmi.sh/)
+- [Viem](https://viem.sh/)
+- [Jotai](https://jotai.org/)
+- [Tanstack React Query](https://tanstack.com/query)
+- [Vaul](https://vaul.fun/)
+- [Zod](https://zod.dev/)
+- [React Hook Form](https://react-hook-form.com/)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## Features
+
+- [x] Multi-chain support
+- [x] In-dapp-wallet support
+- [x] WalletConnect support
+- [x] Collection of web3 components to quickly build your frontend or use as a reference
+- [x] React hooks for various onchain interactions with Wagmi
+
+## Requirements
+
+Before you begin, you need to install the following tools:
+
+- [Node (current LTS version)](https://nodejs.org/en/download/)
+- [npm (latest version or > v10)](https://www.npmjs.com/get-npm)
+- [Git](https://git-scm.com/downloads)
+
+
+## Getting started
+
+```
+git clone https://github.com/buildstationorg/dotui.git
+cd dotui
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Running the project
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+npm run dev
+```
+Default port is 3002. You can change the port in the `package.json` file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```json
+"scripts": {
+  "dev": "next dev -p 3002", // Change the port here to -p <port>
+  "build": "next build",
+  "start": "next start",
+  "lint": "next lint"
+},
+```
 
-## Learn More
+## Building the project
 
-To learn more about Next.js, take a look at the following resources:
+```
+npm run build
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Documentation
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Please see [`docs`](docs) for more information and guidelines for contributing to DotUI.
 
-## Deploy on Vercel
+## Contributing to DotUI
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+We welcome contributions to DotUI!
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Please see [`CONTRIBUTING.md`](CONTRIBUTING.md) for more information and guidelines for contributing to DotUI.
+
